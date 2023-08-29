@@ -1,19 +1,39 @@
 import React from 'react'
-import { useTable } from 'react-table'
+import { useRowSelect, useTable } from 'react-table'
+import { Checkbox } from './Checkbox'
 
 
-export const BasicTable = ({arrData = [], columns= []}) => {
+export const RowSelection = ({arrData = [], columns= []}) => {
   const table = useTable({
     columns : columns,
     data : arrData
-  })
+  },
+  useRowSelect,
+  (hooks)=>{
+    hooks.visibleColumns.push((columns)=>{
+      return [
+        {
+          id:'selection',
+          Header: ({getToggleAllRowsSelectedProps})=>(
+            <Checkbox {...getToggleAllRowsSelectedProps()}/>
+          ),
+          Cell: ({row}) => (
+            <Checkbox {...row.getToggleRowSelectedProps()}/>
+          )
+        },
+        ...columns
+      ]
+    })
+  }
+  )
 
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     rows,
-    prepareRow
+    prepareRow,
+    selectedFlatRows
   } = table
   return (
     <>

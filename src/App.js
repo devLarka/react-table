@@ -1,6 +1,7 @@
 import './App.css';
-import { BasicTable } from './components/BasicTable';
+
 import { UseTable } from './components/UseTable';
+import { UseTableForm } from './components/UseTableForm';
 
 function App() {
   return (

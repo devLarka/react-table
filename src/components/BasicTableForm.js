@@ -2,10 +2,11 @@ import React from 'react'
 import { useTable } from 'react-table'
 
 
-export const BasicTable = ({arrData = [], columns= []}) => {
+export const BasicTableForm = ({arrData = [], columns= [], updateMyData}) => {
   const table = useTable({
     columns : columns,
-    data : arrData
+    data : arrData,
+    updateMyData
   })
 
   const {
@@ -13,7 +14,7 @@ export const BasicTable = ({arrData = [], columns= []}) => {
     getTableBodyProps,
     headerGroups,
     rows,
-    prepareRow
+    prepareRow,
   } = table
   return (
     <>
